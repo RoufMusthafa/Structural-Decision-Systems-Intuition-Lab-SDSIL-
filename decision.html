@@ -1,11 +1,9 @@
-<!-- updated layer hompage - decicion page update 2.0 -->
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
   <meta charset="UTF-8" />
   <title>Decision Analysis</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
@@ -41,35 +39,84 @@
 
   const form = document.getElementById("decisionForm");
 
-  // ===================================================
-  // Dynamic form fields based on decision type
-  // ===================================================
+  /* =========================================================
+     JOB OFFER FORM (UPDATED TO MONTHLY SALARY)
+  ========================================================== */
 
   if (type === "job_offer") {
     form.innerHTML = `
-      <input id="salary" class="form-control mb-2" placeholder="Annual Salary (₹)">
-      <input id="expenses" class="form-control mb-2" placeholder="Monthly Expenses (₹)">
+      <input id="monthlySalary" class="form-control mb-2"
+        placeholder="Monthly Salary (₹)" oninput="updateAnnual()">
+
+      <div id="annualDisplay" class="text-muted mb-3"></div>
+
+      <input id="expenses" class="form-control mb-2"
+        placeholder="Monthly Expenses (₹)">
     `;
   }
+
+  /* =========================================================
+     INVESTMENT FORM
+  ========================================================== */
 
   if (type === "investment") {
     form.innerHTML = `
-      <input id="investmentAmount" class="form-control mb-2" placeholder="Investment Amount (₹)">
-      <input id="netWorth" class="form-control mb-2" placeholder="Total Net Worth (₹)">
+      <input id="investmentAmount" class="form-control mb-2"
+        placeholder="Investment Amount (₹)">
+      <input id="netWorth" class="form-control mb-2"
+        placeholder="Total Net Worth (₹)">
     `;
   }
+
+  /* =========================================================
+     SYSTEM DESIGN FORM
+  ========================================================== */
 
   if (type === "system_design") {
     form.innerHTML = `
-      <input id="load" class="form-control mb-2" placeholder="Current Load">
-      <input id="capacity" class="form-control mb-2" placeholder="Capacity">
+      <input id="load" class="form-control mb-2"
+        placeholder="Current Load">
+      <input id="capacity" class="form-control mb-2"
+        placeholder="Capacity">
     `;
   }
 
+  /* =========================================================
+     LIVE ANNUAL INCOME CALCULATION
+  ========================================================== */
+
+  window.updateAnnual = function () {
+
+    const monthly = Number(document.getElementById("monthlySalary").value);
+
+    if (!monthly) {
+      document.getElementById("annualDisplay").innerText = "";
+      return;
+    }
+
+    const annual = monthly * 12;
+
+    document.getElementById("annualDisplay").innerText =
+      "Estimated Annual Income: ₹" + annual.toLocaleString();
+  };
+
+  /* =========================================================
+     ANALYZE
+  ========================================================== */
+
   window.analyze = function () {
 
+    let annualSalary = null;
+
+    if (type === "job_offer") {
+      const monthly = Number(document.getElementById("monthlySalary")?.value);
+      if (monthly) {
+        annualSalary = monthly * 12;
+      }
+    }
+
     const inputs = {
-      salary: Number(document.getElementById("salary")?.value) || null,
+      salary: annualSalary, // <-- engine still expects annual
       monthlyExpenses: Number(document.getElementById("expenses")?.value) || null,
       investmentAmount: Number(document.getElementById("investmentAmount")?.value) || null,
       netWorth: Number(document.getElementById("netWorth")?.value) || null,
@@ -84,84 +131,8 @@
     document.getElementById("resultContent").innerHTML =
       result.summaryPoints.map(p => `<p>${p}</p>`).join("");
   };
+
 </script>
 
 </body>
 </html>
-
-
-
-
-
-
-
-<!--
-Decision Interface Page
-Keeps decision logic separate from educational layer.
--->
-
-<!-- <!DOCTYPE html>
-<html>
-<head>
-  <meta charset="UTF-8" />
-  <title>Decision Analysis</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body class="bg-light">
-
-<div class="container py-5">
-  <a href="index.html" class="btn btn-secondary btn-sm mb-4">← Back</a>
-
-  <h3 id="decisionTitle"></h3>
-
-  <div id="decisionForm" class="mb-4"></div>
-
-  <button class="btn btn-success" onclick="analyze()">Analyze</button>
-
-  <div id="result" class="mt-4"></div>
-</div>
-
-<script type="module">
-  import { runDecision } from "./src/app.js";
-
-  const params = new URLSearchParams(window.location.search);
-  const type = params.get("type");
-
-  document.getElementById("decisionTitle").innerText =
-    "Analyzing: " + type.replace("_", " ");
-
-  window.analyze = function() {
-
-    const inputs = {
-      salary: Number(document.getElementById("salary")?.value) || null,
-      monthlyExpenses: Number(document.getElementById("expenses")?.value) || null,
-      load: Number(document.getElementById("load")?.value) || null,
-      capacity: Number(document.getElementById("capacity")?.value) || null
-    };
-
-    const res = runDecision(type, inputs);
-
-    document.getElementById("result").innerHTML =
-      res.summaryPoints.map(p => `<p>${p}</p>`).join("");
-  };
-
-  Dynamic form based on type
-  const form = document.getElementById("decisionForm");
-
-  if (type === "job_offer") {
-    form.innerHTML = `
-      <input id="salary" class="form-control mb-2" placeholder="Annual Salary">
-      <input id="expenses" class="form-control mb-2" placeholder="Monthly Expenses">
-    `;
-  }
-
-  if (type === "system_design") {
-    form.innerHTML = `
-      <input id="load" class="form-control mb-2" placeholder="Current Load">
-      <input id="capacity" class="form-control mb-2" placeholder="Capacity">
-    `;
-  }
-</script>
-
-</body>
-</html> -->
