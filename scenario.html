@@ -1,0 +1,69 @@
+<!-- updated layer hompage - scenario page update 2.0 -->
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>System Scenario</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-light">
+
+<div class="container py-5">
+
+  <a href="index.html" class="btn btn-secondary btn-sm mb-4">← Back</a>
+
+  <h3 id="scenarioTitle"></h3>
+  <p id="scenarioDescription" class="text-muted"></p>
+
+  <div id="scenarioContent" class="card mt-4 p-4"></div>
+
+</div>
+
+<script type="module">
+  import { loadScenario } from "./src/scenarioRouter.js";
+
+  const params = new URLSearchParams(window.location.search);
+  const type = params.get("type");
+
+  loadScenario(type);
+</script>
+
+</body>
+</html>
+
+
+
+
+<!-- <!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>Scenario</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+
+<div class="container py-5">
+  <a href="index-updated.html" class="btn btn-sm btn-secondary mb-4">← Back</a>
+
+  <h3 id="scenarioTitle"></h3>
+  <p id="scenarioDescription" class="text-muted"></p>
+
+  <div id="scenarioContent"></div>
+</div>
+
+<script type="module">
+  import { loadScenario } from "./src/scenarioRouter.js";
+
+  const params = new URLSearchParams(window.location.search);
+  const type = params.get("type");
+
+  loadScenario(type);
+</script>
+
+</body>
+</html> -->

@@ -1,0 +1,167 @@
+<!-- updated layer hompage - decicion page update 2.0 -->
+ <!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>Decision Analysis</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-light">
+
+<div class="container py-5">
+
+  <a href="index.html" class="btn btn-secondary btn-sm mb-4">← Back</a>
+
+  <h3 id="decisionTitle" class="mb-4"></h3>
+
+  <div id="decisionForm" class="mb-4"></div>
+
+  <button class="btn btn-success" onclick="analyze()">Analyze</button>
+
+  <div id="result" class="card mt-4 d-none">
+    <div class="card-body">
+      <h5>Analysis Result</h5>
+      <div id="resultContent"></div>
+    </div>
+  </div>
+
+</div>
+
+<script type="module">
+  import { runDecision } from "./src/app.js";
+
+  const params = new URLSearchParams(window.location.search);
+  const type = params.get("type");
+
+  document.getElementById("decisionTitle").innerText =
+    "Analyzing: " + type.replace("_", " ");
+
+  const form = document.getElementById("decisionForm");
+
+  // ===================================================
+  // Dynamic form fields based on decision type
+  // ===================================================
+
+  if (type === "job_offer") {
+    form.innerHTML = `
+      <input id="salary" class="form-control mb-2" placeholder="Annual Salary (₹)">
+      <input id="expenses" class="form-control mb-2" placeholder="Monthly Expenses (₹)">
+    `;
+  }
+
+  if (type === "investment") {
+    form.innerHTML = `
+      <input id="investmentAmount" class="form-control mb-2" placeholder="Investment Amount (₹)">
+      <input id="netWorth" class="form-control mb-2" placeholder="Total Net Worth (₹)">
+    `;
+  }
+
+  if (type === "system_design") {
+    form.innerHTML = `
+      <input id="load" class="form-control mb-2" placeholder="Current Load">
+      <input id="capacity" class="form-control mb-2" placeholder="Capacity">
+    `;
+  }
+
+  window.analyze = function () {
+
+    const inputs = {
+      salary: Number(document.getElementById("salary")?.value) || null,
+      monthlyExpenses: Number(document.getElementById("expenses")?.value) || null,
+      investmentAmount: Number(document.getElementById("investmentAmount")?.value) || null,
+      netWorth: Number(document.getElementById("netWorth")?.value) || null,
+      load: Number(document.getElementById("load")?.value) || null,
+      capacity: Number(document.getElementById("capacity")?.value) || null
+    };
+
+    const result = runDecision(type, inputs);
+
+    document.getElementById("result").classList.remove("d-none");
+
+    document.getElementById("resultContent").innerHTML =
+      result.summaryPoints.map(p => `<p>${p}</p>`).join("");
+  };
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+<!--
+Decision Interface Page
+Keeps decision logic separate from educational layer.
+-->
+
+<!-- <!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>Decision Analysis</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+
+<div class="container py-5">
+  <a href="index.html" class="btn btn-secondary btn-sm mb-4">← Back</a>
+
+  <h3 id="decisionTitle"></h3>
+
+  <div id="decisionForm" class="mb-4"></div>
+
+  <button class="btn btn-success" onclick="analyze()">Analyze</button>
+
+  <div id="result" class="mt-4"></div>
+</div>
+
+<script type="module">
+  import { runDecision } from "./src/app.js";
+
+  const params = new URLSearchParams(window.location.search);
+  const type = params.get("type");
+
+  document.getElementById("decisionTitle").innerText =
+    "Analyzing: " + type.replace("_", " ");
+
+  window.analyze = function() {
+
+    const inputs = {
+      salary: Number(document.getElementById("salary")?.value) || null,
+      monthlyExpenses: Number(document.getElementById("expenses")?.value) || null,
+      load: Number(document.getElementById("load")?.value) || null,
+      capacity: Number(document.getElementById("capacity")?.value) || null
+    };
+
+    const res = runDecision(type, inputs);
+
+    document.getElementById("result").innerHTML =
+      res.summaryPoints.map(p => `<p>${p}</p>`).join("");
+  };
+
+  Dynamic form based on type
+  const form = document.getElementById("decisionForm");
+
+  if (type === "job_offer") {
+    form.innerHTML = `
+      <input id="salary" class="form-control mb-2" placeholder="Annual Salary">
+      <input id="expenses" class="form-control mb-2" placeholder="Monthly Expenses">
+    `;
+  }
+
+  if (type === "system_design") {
+    form.innerHTML = `
+      <input id="load" class="form-control mb-2" placeholder="Current Load">
+      <input id="capacity" class="form-control mb-2" placeholder="Capacity">
+    `;
+  }
+</script>
+
+</body>
+</html> -->

@@ -1,0 +1,282 @@
+<!-- updated hompage dual layout 2.0 -->
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>Decision & System Intuition Lab</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-light">
+
+<div class="container py-5">
+
+  <div class="text-center mb-5">
+    <h2>🧠 Decision & System Intuition Lab</h2>
+    <p class="text-muted">
+      Understand risks. Prevent structural mistakes. Learn how complex systems behave.
+    </p>
+  </div>
+
+  <!-- ===================================================== -->
+  <!-- SECTION 1: PRACTICAL DECISION LAYER -->
+  <!-- ===================================================== -->
+
+  <h4 class="mb-3">🛡️ Make a decision safely</h4>
+
+  <div class="row g-4 mb-5">
+
+    <div class="col-md-4">
+      <div class="card shadow-sm p-4 text-center">
+        <h5>💼 Job Decision</h5>
+        <p class="text-muted small">Check survivability & lock-in risk</p>
+        <button class="btn btn-primary mt-3"
+          onclick="goToDecision('job_offer')">
+          Analyze
+        </button>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card shadow-sm p-4 text-center">
+        <h5>💰 Investment Decision</h5>
+        <p class="text-muted small">Avoid ruin & negative asymmetry</p>
+        <button class="btn btn-primary mt-3"
+          onclick="goToDecision('investment')">
+          Analyze
+        </button>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card shadow-sm p-4 text-center">
+        <h5>⚙️ System Design</h5>
+        <p class="text-muted small">Capacity & fragility threshold</p>
+        <button class="btn btn-primary mt-3"
+          onclick="goToDecision('system_design')">
+          Analyze
+        </button>
+      </div>
+    </div>
+
+  </div>
+
+
+  <!-- ===================================================== -->
+  <!-- SECTION 2: COMPLEX SYSTEM INTUITION -->
+  <!-- ===================================================== -->
+
+  <h4 class="mb-3">🔬 Understand complex systems</h4>
+
+  <div class="row g-4">
+
+    <div class="col-md-4">
+      <div class="card shadow-sm p-4 text-center">
+        <h5>📊 Analytics</h5>
+        <p class="text-muted small">Heavy tails & misleading averages</p>
+        <button class="btn btn-outline-secondary mt-3"
+          onclick="goToScenario('analytics')">
+          Explore
+        </button>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card shadow-sm p-4 text-center">
+        <h5>🚦 Traffic & Queues</h5>
+        <p class="text-muted small">Phase transitions & congestion</p>
+        <button class="btn btn-outline-secondary mt-3"
+          onclick="goToScenario('traffic')">
+          Explore
+        </button>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card shadow-sm p-4 text-center">
+        <h5>📈 Virality</h5>
+        <p class="text-muted small">Power-law growth</p>
+        <button class="btn btn-outline-secondary mt-3"
+          onclick="goToScenario('virality')">
+          Explore
+        </button>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card shadow-sm p-4 text-center">
+        <h5>🎮 Game Rewards</h5>
+        <p class="text-muted small">Reward scaling & fairness</p>
+        <button class="btn btn-outline-secondary mt-3"
+          onclick="goToScenario('games')">
+          Explore
+        </button>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card shadow-sm p-4 text-center">
+        <h5>🖥️ Servers & Latency</h5>
+        <p class="text-muted small">Load vs capacity fragility</p>
+        <button class="btn btn-outline-secondary mt-3"
+          onclick="goToScenario('servers')">
+          Explore
+        </button>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card shadow-sm p-4 text-center">
+        <h5>🌍 Disasters & Risk</h5>
+        <p class="text-muted small">Tail risk & extreme events</p>
+        <button class="btn btn-outline-secondary mt-3"
+          onclick="goToScenario('disasters')">
+          Explore
+        </button>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+  function goToDecision(type) {
+    window.location.href = "decision.html?type=" + type;
+  }
+
+  function goToScenario(type) {
+    window.location.href = "scenario.html?type=" + type;
+  }
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+<!--
+EXTENDED HOMEPAGE STRUCTURE
+
+Section 1: Decision Layer (Practical)
+Section 2: System Intuition Layer (Educational)
+
+Clear separation maintained.
+-->
+
+<!-- <!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>Decision & System Intuition Lab</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+
+<div class="container py-5">
+
+  <h2 class="text-center mb-5">🧠 Decision & System Intuition Lab</h2>
+
+  
+  <h4 class="mb-3">🛡️ Make a decision safely</h4>
+  <div class="row g-4 mb-5">
+
+    <div class="col-md-4">
+      <div class="card shadow-sm p-4 text-center">
+        <h5>💼 Job</h5>
+        <button class="btn btn-primary mt-3"
+          onclick="goToDecision('job_offer')">Analyze</button>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card shadow-sm p-4 text-center">
+        <h5>💰 Investment</h5>
+        <button class="btn btn-primary mt-3"
+          onclick="goToDecision('investment')">Analyze</button>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card shadow-sm p-4 text-center">
+        <h5>⚙️ System Design</h5>
+        <button class="btn btn-primary mt-3"
+          onclick="goToDecision('system_design')">Analyze</button>
+      </div>
+    </div>
+
+  </div>
+
+  
+  <h4 class="mb-3">🔬 Understand complex systems</h4>
+  <div class="row g-4">
+
+    <div class="col-md-4">
+      <div class="card shadow-sm p-4 text-center">
+        <h5>📊 Analytics</h5>
+        <button class="btn btn-outline-secondary mt-3"
+          onclick="goToScenario('analytics')">Explore</button>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card shadow-sm p-4 text-center">
+        <h5>🚦 Traffic</h5>
+        <button class="btn btn-outline-secondary mt-3"
+          onclick="goToScenario('traffic')">Explore</button>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card shadow-sm p-4 text-center">
+        <h5>📈 Virality</h5>
+        <button class="btn btn-outline-secondary mt-3"
+          onclick="goToScenario('virality')">Explore</button>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card shadow-sm p-4 text-center">
+        <h5>🎮 Games</h5>
+        <button class="btn btn-outline-secondary mt-3"
+          onclick="goToScenario('games')">Explore</button>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card shadow-sm p-4 text-center">
+        <h5>🖥️ Servers</h5>
+        <button class="btn btn-outline-secondary mt-3"
+          onclick="goToScenario('servers')">Explore</button>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card shadow-sm p-4 text-center">
+        <h5>🌍 Disasters</h5>
+        <button class="btn btn-outline-secondary mt-3"
+          onclick="goToScenario('disasters')">Explore</button>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+  function goToDecision(type) {
+    window.location.href = "decision.html?type=" + type;
+  }
+
+  function goToScenario(type) {
+    window.location.href = "scenario.html?type=" + type;
+  }
+</script>
+
+</body>
+</html> -->
